@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 45%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    /*@apply border-border;*/
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .border-border {
+    border-color: var(--border); /* Use the CSS variable defined in :root */
+  }
+
+  .bg-background {
+    background-color: var(--background); /* Use the CSS variable defined in :root */
+  }
+
+  .text-foreground {
+    color: var(--foreground); /* Use the CSS variable defined in :root */
+  }
+
+  .font-body {
+    font-family: 'Your Font Family', sans-serif; /* Replace with your desired font family */
+  }
+
+  .font-heading {
+    font-family: 'Your Heading Font', serif; /* Replace with your desired font family */
+  }
+}
+
+/* styles.css */
+.fade-in {
+  transition: opacity 0.5s ease-in;
+}
+
+.fade-in-enter {
+  opacity: 1;
+}
+
+
+.dropdown-menu-content div {
+  @apply cursor-pointer px-4 py-2;
+}
+
+.dropdown-menu-content div:hover {
+  @apply bg-gray-100;
+}
+
+
+/* Force DropdownMenuContent to stack items vertically */
+.dropdown-menu-content {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px;
+  background-color: aliceblue;
+  flex-direction: column !important; /* Ensure items stack vertically */
+  gap: 0.25rem;
+}
+
+
+
+/* Styling for each DropdownItem */
+.dropdown-item {
+  padding: 0.5rem 0.75rem; /* Reduce padding */
+  cursor: pointer;
+  font-size: 1rem; /* Slightly smaller font */
+}
+
+.dropdown-item:hover {
+  background-color: var(--muted); /* Add hover background color */
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap; /* Ensures that items wrap to the next line */
+  gap: 0.5rem; /* Add a gap between the items */
+}
