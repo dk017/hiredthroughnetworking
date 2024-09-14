@@ -7,10 +7,13 @@ import { MailIcon } from "./components/MailIcon"
 import { TwitterIcon } from "./components/TwitterIcon"
 import { MapPinIcon } from "./components/MapPinIcon"
 import { useCallback, useEffect, useState } from "react"
+import { v4 as uuidv4 } from 'uuid';
 import  Tag  from "./components/Tag"
 import React from 'react';
 import { supabase } from '../app/supabaseClient'; // Adjust the import based on your project structure
 import { XIcon } from '@heroicons/react/solid';
+import EmailCaptureModal from '../app/components/EmailCaptureComponent';
+
 
 
 
@@ -28,17 +31,18 @@ const JobBoard: React.FC = () => {
   const [displayedJobs, setDisplayedJobs] = useState<{ id: number; title: string; email:string; company: string; skills: string; description: string; post_url:string;author_profile:string; location: string; category: string; is_linkedin:boolean;}[]>([]); // Replace JobType with your actual job type
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSources, setSelectedSources] = useState<string[]>(['twitter', 'linkedin']);
+  const [showEmailModal, setShowEmailModal] = useState(false);
 
   const itemsPerPage = 10; // Adjust this value as needed
 
   const fetchJobs = useCallback(async () => {
-
     if (typeof window === 'undefined') return;
 
     try {
       const query = supabase
         .from('jobs_nh')
-        .select('*');
+        .select('*')
+        .order('created_at', { ascending: false });
 
       // Apply category filter if not "all"
       if (selectedTitles.length > 0) {
@@ -83,6 +87,30 @@ const JobBoard: React.FC = () => {
       setCurrentPage(1); // Reset to first page
       fetchJobs();
       e.preventDefault();
+    }
+  };
+
+  const handleCloseModal = useCallback(() => {
+    setShowEmailModal(false);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowEmailModal(true);
+    }, 45000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleEmailSubmit = async (name:string, email: string, searchTerms: string) => {
+    const { data, error } = await supabase
+      .from('preferences')
+      .insert({ id: uuidv4(), name, email, search_terms: searchTerms });
+    if (error) {
+      console.error('Error:', error);
+      throw new Error(`Error inserting user details: ${error.message}`);
+    } else {
+      console.log('User details inserted successfully', data);
     }
   };
 
@@ -289,9 +317,11 @@ const JobBoard: React.FC = () => {
           <span>{job.title}</span>
         )}
         <div className="flex items-center gap-2 mb-4">
-          <span className={`${isDarkMode ? "text-muted-foreground-dark" : "text-muted-foreground"}`}>
-            {job.company}
-          </span>
+          {job.company && job.company.trim() !== '' && (
+                <span className={`${isDarkMode ? "text-muted-foreground-dark" : "text-muted-foreground"}`}>
+                  {job.company}
+                </span>
+            )}
           <div className="flex items-center gap-2">
             {job.is_linkedin ? (
               <Link href={job.author_profile || '#'} target="_blank" prefetch={false}>
@@ -364,6 +394,12 @@ const JobBoard: React.FC = () => {
       <div />
     </div>
   )}
+
+    <EmailCaptureModal
+        isOpen={showEmailModal}
+        onClose={handleCloseModal}
+        onSubmit={handleEmailSubmit}
+      />
 </div>
 
   )

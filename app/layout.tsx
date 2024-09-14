@@ -1,5 +1,16 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'ViaNetworking',
+  description: 'Hired Through Networking',
+  icons: {
+    icon: [
+      { url: './handshake.ico' }
+    ],
+  },
+};
 
 const fontHeading = Inter({
   subsets: ['latin'],
