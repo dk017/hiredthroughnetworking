@@ -36,6 +36,13 @@ const EmailCaptureModal: React.FC<EmailCaptureModalProps> = ({ isOpen, onClose, 
     if (currentCloseButton) {
       currentCloseButton.addEventListener('click', handleClose);
     }
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
       if (currentForm) {
