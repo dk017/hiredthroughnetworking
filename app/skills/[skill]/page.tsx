@@ -10,7 +10,7 @@ import { TwitterIcon } from '../../components/TwitterIcon';
 import { MailIcon } from '../../components/MailIcon';
 import Tag from '../../components/Tag';
 import JobDetailModal from '../../components/JobDetailModal';
-export const runtime = 'experimental-edge';
+export const runtime = 'edge';
 
 
 
