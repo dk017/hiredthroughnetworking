@@ -6,6 +6,8 @@ import { NextPageContext } from 'next';
 
 export const runtime = 'experimental-edge';
 
+
+
 interface ErrorProps {
   statusCode: number;
 }
