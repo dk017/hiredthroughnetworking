@@ -19,7 +19,7 @@ if (process.env.CLOUDFLARE_PAGES) {
 
 // Add this configuration for the /_error page
 nextConfig.experimental.pageConfig = {
-  '/_error': {
+  './pages/_error.js': {
     runtime: 'experimental-edge',
   },
 };
