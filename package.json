@@ -47,7 +47,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^0.10.2",
+    "@cloudflare/next-on-pages": "https://prerelease-registry.devprod.cloudflare.dev/next-on-pages/runs/5786546906/npm-package-next-on-pages-418",
     "@types/next": "^9.0.0",
     "@types/node": "^20",
     "@types/react": "^18.3.10",
