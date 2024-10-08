@@ -20,6 +20,8 @@ const fontBody = Inter({
   weight: '500', // Set weight for body font
 });
 
+export const runtime = 'edge';
+
 const Header = () => {
   return (
     <header className="flex items-center justify-between p-4 bg-gray-800 text-white">
