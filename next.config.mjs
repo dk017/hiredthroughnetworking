@@ -1,11 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    runtime: 'experimental-edge',
-  },
-  // This ensures that all pages use the Edge Runtime by default
   reactStrictMode: true,
   swcMinify: true,
 };
+
+if (process.env.CLOUDFLARE_PAGES) {
+  // Cloudflare Pages specific configuration
+  nextConfig.experimental = {
+    isrMemoryCacheSize: 0,
+    serverComponentsExternalPackages: ['@prisma/client'],
+  };
+}
 
 export default nextConfig;
