@@ -20,7 +20,7 @@ const fontBody = Inter({
   weight: '500', // Set weight for body font
 });
 
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 const Header = () => {
   return (
