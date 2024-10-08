@@ -1,16 +1,11 @@
-// pages/_app.js
-import Head from 'next/head';
-import '../app/globals.css';
+import Layout from '../app/layout'; // Adjust the import path if necessary
+import '../app/globals.css'; // Ensure global styles are imported
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <link rel="icon" href="../public/handshake.ico" />
-        <title>LinkUpCareers</title>
-      </Head>
+    <Layout>
       <Component {...pageProps} />
-    </>
+    </Layout>
   );
 }
 

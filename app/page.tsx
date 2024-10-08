@@ -265,9 +265,7 @@ const JobBoard: React.FC = () => {
     <div
   className={`w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 `}
   >
-  <div className="flex items-center justify-between mb-8">
-    <h1 className="text-3xl font-bold">ViaNetworking</h1>
-  </div>
+
 
   <div className="flex flex-wrap gap-4 items-center justify-between mb-4 w-full">
   {/* Job Title Filter */}
