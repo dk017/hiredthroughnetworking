@@ -1,5 +1,5 @@
 // app/error.tsx
-export const runtime = 'edge';
+export const runtime = 'experimental-edge';
 
 const ErrorPage = () => {
     return (
