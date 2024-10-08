@@ -26,5 +26,7 @@ Error.getInitialProps = ({ res, err }: NextPageContext): ErrorProps => {
     return { statusCode };
 };
 
+export const runtime = process.env.NEXT_RUNTIME || 'edge';
+
 
 export default Error;
